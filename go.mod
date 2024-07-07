@@ -1,6 +1,6 @@
 module example.com/restapi
 
-go 1.22.5
+go 1.20
 
 require (
 	github.com/bytedance/sonic v1.11.9 // indirect
