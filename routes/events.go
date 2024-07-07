@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"example.com/restapi/models"
+	"example.com/restapi/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -32,6 +33,21 @@ func getEvents(context *gin.Context) {
 }
 
 func createEvents(context *gin.Context) {
+
+	// we should extract token if we want to protect route for Signed in User JWT
+	token := context.Request.Header.Get("Authorization")
+
+	if token == "" {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+
+	err := utils.ValidateToken(token)
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"No unauthrieed ": err.Error()})
+		return
+	}
+
 	var event models.Event
 	if err := context.ShouldBindJSON(&event); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -40,7 +56,7 @@ func createEvents(context *gin.Context) {
 
 	//event.ID = 1
 	//event.UserID = 1
-	err := models.Save(event)
+	err = models.Save(event)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error in create event": err.Error()})
 		return
