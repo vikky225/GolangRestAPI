@@ -1,123 +1,65 @@
+
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
-</p>
-<h3 align="center">Project Title</h3>
+ <img src="https://djeqr6to3dedg.cloudfront.net/repo-logos/library/golang/live/logo.png" alt="Project logo"></a>
+</p]>
+<h3 align="center">GOLANG REST API</h3>
 
-<div align="center">
 
-[![Hackathon](https://img.shields.io/badge/hackathon-name-orange.svg)](http://hackathon.url.com)
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+# REST_API Package
 
-</div>
+This package contains the REST API implementation for the Golang project.
 
----
+## Endpoints
 
-<p align="center"> Few lines describing your project.
-    <br> 
-</p>
+- `GET /events`: Get all events
+- `GET /events/:id`: Get a specific event
+- `POST /events`: Create a new event
+- `PUT /events/:id`: Update an event
+- `DELETE /events/:id`: Delete an event
+- `POST /events/:id/register`: Register for an event
+- `DELETE /events/:id/register`: Cancel event registration
+- `POST /signup`: User signup
+- `POST /login`: User login
 
-## 📝 Table of Contents
+## Authentication
 
-- [Problem Statement](#problem_statement)
-- [Idea / Solution](#idea)
-- [Dependencies / Limitations](#limitations)
-- [Future Scope](#future_scope)
-- [Setting up a local environment](#getting_started)
-- [Usage](#usage)
-- [Technology Stack](#tech_stack)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
+- Routes are protected using JWT authentication
+- User signup and login functionality included
+- Authorization implemented for few routes where only the valid loggedin user who created event only allowed to update and delete events
 
-## 🧐 Problem Statement <a name = "problem_statement"></a>
+## Usage
 
-It is useful to design and follow a specific format when writing a problem statement. While there are several options
-for doing this, the following is a simple and straightforward template often used in Business Analysis to maintain
-focus on defining the problem.
+1. Initialize the database by running `db.InitDB()` in the [main](cci:1:///Users/vikasmalviya/REST_API/main.go:10:0-19:1) package.
+2. Register the routes using `routes.RegisteredRoutes(server)` in the [main](cci:1:///Users/vikasmalviya/REST_API/main.go:10:0-19:1) package.
 
-- IDEAL: This section is used to describe the desired or “to be” state of the process or product. At large, this section
-  should illustrate what the expected environment would look like once the solution is implemented.
-- REALITY: This section is used to describe the current or “as is” state of the process or product.
-- CONSEQUENCES: This section is used to describe the impacts on the business if the problem is not fixed or improved upon.
-  This includes costs associated with loss of money, time, productivity, competitive advantage, and so forth.
+## Running the Project
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:vikky225/GolangRestAPI.git
+   ```
 
-Following this format will result in a workable document that can be used to understand the problem and elicit
-requirements that will lead to a winning solution.
-
-## 💡 Idea / Solution <a name = "idea"></a>
-
-This section is used to describe potential solutions.
-
-Once the ideal, reality, and consequences sections have been
-completed, and understood, it becomes easier to provide a solution for solving the problem.
-
-## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
-
-- What are the dependencies of your project?
-- Describe each limitation in detailed but concise terms
-- Explain why each limitation exists
-- Provide the reasons why each limitation could not be overcome using the method(s) chosen to acquire.
-- Assess the impact of each limitation in relation to the overall findings and conclusions of your project, and if
-  appropriate, describe how these limitations could point to the need for further research.
-
-## 🚀 Future Scope <a name = "future_scope"></a>
-
-Write about what you could not develop during the course of the Hackathon; and about what your project can achieve
-in the future.
-
-## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development
-and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
+2.Navigate to the project directory
+```bash
+cd REST_API
 ```
 
-### Installing
+3.Install dependencies
+```go mod download```
 
-A step by step series of examples that tell you how to get a development env running.
+4. Run the application
+```go run .```
 
-Say what the step will be
 
-```
-Give the example
-```
 
-And repeat
+## Dependencies
 
-```
-until finished
-```
+- `github.com/gin-gonic/gin`: Gin web framework
+- `github.com/mattn/go-sqlite3`: SQLite database driver
+- `github.com/golang-jwt/jwt/v5`: JWT library
 
-## 🎈 Usage <a name="usage"></a>
+## Author
 
-Add notes about how to use the system.
+- Vikas Malviya
 
-## ⛏️ Built With <a name = "tech_stack"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
-who participated in this project.
-
-## 🎉 Acknowledgments <a name = "acknowledgments"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+Feel free to reach out for any questions or contributions related to the REST_API package!
