@@ -19,5 +19,24 @@ func InitDB() *sql.DB {
 
 	defer DB.Close()
 
+	createTables(DB)
+
 	return DB
+}
+
+func createTables(DB *sql.DB) {
+	sql := `
+		CREATE TABLE IF NOT EXISTS events (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			name TEXT,
+			description TEXT,
+			location TEXT,
+			dateTime TEXT,
+			userID INTEGER
+		);
+	`
+	_, err := DB.Exec(sql)
+	if err != nil {
+		panic(err)
+	}
 }
