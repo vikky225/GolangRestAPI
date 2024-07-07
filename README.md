@@ -6,7 +6,7 @@
 <h3 align="center">GOLANG REST API</h3>
 
 
-# REST_API Package
+# REST_API Package.
 
 This package contains the REST API implementation for the Golang project.
 
