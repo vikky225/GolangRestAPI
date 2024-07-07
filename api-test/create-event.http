@@ -1,0 +1,21 @@
+POST http://localhost:8080/event
+Content-Type: application/json
+
+{
+    {
+    "id": 1,
+    "name": "test event name",
+    "description": "d",
+    "location": "d",
+    "dateTime": "d",
+    "userID": 1
+  },
+  {
+    "id": 2,
+    "name": "test eventy name",
+    "description": "d",
+    "location": "d",
+    "dateTime": "s",
+    "userID": 2
+  }
+  }

@@ -1,0 +1,2 @@
+GET http://localhost:8080/event
+Content-Type: application/json
