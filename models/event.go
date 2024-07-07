@@ -10,12 +10,12 @@ type Event struct {
 	Description string `json:"description"`
 	Location    string `json:"location"`
 	DateTime    string `json:"dateTime"`
-	UserID      int    `json:"userID"`
+	UserID      int64  `json:"userID"`
 }
 
 var events = []Event{}
 
-func Save(e Event) error {
+func Save(e *Event) error {
 	//laer to in deb
 	query := `INSERT INTO events (name, description, location, dateTime, userID) 
 	VALUES (?, ?, ?, ?, ?)`

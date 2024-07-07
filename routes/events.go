@@ -42,7 +42,7 @@ func createEvents(context *gin.Context) {
 		return
 	}
 
-	err := utils.ValidateToken(token)
+	userId, err := utils.ValidateToken(token)
 	if err != nil {
 		context.JSON(http.StatusUnauthorized, gin.H{"No unauthrieed ": err.Error()})
 		return
@@ -55,8 +55,8 @@ func createEvents(context *gin.Context) {
 	}
 
 	//event.ID = 1
-	//event.UserID = 1
-	err = models.Save(event)
+	event.UserID = userId
+	err = models.Save(&event)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error in create event": err.Error()})
 		return
