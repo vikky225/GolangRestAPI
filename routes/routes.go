@@ -9,10 +9,18 @@ import (
 func RegisteredRoutes(server *gin.Engine) {
 	// Define the routes and their handlers
 	server.GET("/events", getEvents)
-	server.POST("/events", middlewares.Authenticate, createEvents)
 	server.GET("/events/:id", getEvent)
-	server.PUT("/events/:id", updateEvent)
-	server.DELETE("/events/:id", deleteEvent)
+
+	// We can protect route like this in Golang using middlewares
+	authenticated := server.Group("/")
+	authenticated.Use(middlewares.Authenticate)
+	authenticated.POST("/events", createEvents)
+	authenticated.PUT("/events/:id", updateEvent)
+	authenticated.DELETE("/events/:id", deleteEvent)
+
+	//server.POST("/events", middlewares.Authenticate, createEvents)
+	//server.PUT("/events/:id", updateEvent)
+	//server.DELETE("/events/:id", deleteEvent)
 	server.POST("/signup", signup)
 	server.POST("/login", login)
 }
