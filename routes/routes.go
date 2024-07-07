@@ -18,9 +18,14 @@ func RegisteredRoutes(server *gin.Engine) {
 	authenticated.PUT("/events/:id", updateEvent)
 	authenticated.DELETE("/events/:id", deleteEvent)
 
+	//registring and cancelling both shoud be happen for login user only
+	authenticated.POST("/events/:id/register", registerForEvent)
+	authenticated.DELETE("/events/:id/register", cancelRegistration)
+
 	//server.POST("/events", middlewares.Authenticate, createEvents)
 	//server.PUT("/events/:id", updateEvent)
 	//server.DELETE("/events/:id", deleteEvent)
 	server.POST("/signup", signup)
 	server.POST("/login", login)
+
 }
