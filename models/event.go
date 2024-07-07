@@ -5,7 +5,7 @@ import (
 )
 
 type Event struct {
-	ID          int    `json:"id"`
+	ID          int64  `json:"id"`
 	Name        string `json:"name" binding:"required"`
 	Description string `json:"description"`
 	Location    string `json:"location"`
@@ -28,12 +28,12 @@ func Save(e Event) error {
 	if err != nil {
 		panic(err)
 	}
-	defer stmt.Close()
+	//defer stmt.Close()
 	lastID, err := result.LastInsertId()
 	if err != nil {
 		panic(err)
 	}
-	e.ID = int(lastID)
+	e.ID = lastID
 
 	return err
 

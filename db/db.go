@@ -17,7 +17,7 @@ func InitDB() *sql.DB {
 	DB.SetMaxOpenConns(10)
 	DB.SetMaxIdleConns(5)
 
-	defer DB.Close()
+	//defer DB.Close()
 
 	createTables(DB)
 
