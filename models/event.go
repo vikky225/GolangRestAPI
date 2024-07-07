@@ -1,6 +1,8 @@
 package models
 
-import "example.com/restapi/db"
+import (
+	"example.com/restapi/db"
+)
 
 type Event struct {
 	ID          int    `json:"id"`
@@ -38,6 +40,20 @@ func Save(e Event) error {
 	//events = append(events, e)
 }
 
-func GetAllEvents() []Event {
-	return events
+func GetAllEvents() ([]Event, error) {
+	query := `SELECT * FROM events`
+	rows, err := db.DB.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var e Event
+		err := rows.Scan(&e.ID, &e.Name, &e.Description, &e.Location, &e.DateTime, &e.UserID)
+		if err != nil {
+			return nil, err
+		}
+		events = append(events, e)
+	}
+	return events, nil
 }

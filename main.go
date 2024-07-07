@@ -23,7 +23,10 @@ func main() {
 }
 
 func getEvent(context *gin.Context) {
-	events := models.GetAllEvents()
+	events, err := models.GetAllEvents()
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error in get event": err.Error()})
+	}
 	context.JSON(http.StatusOK, events)
 }
 
@@ -36,6 +39,10 @@ func createEvent(context *gin.Context) {
 
 	//event.ID = 1
 	//event.UserID = 1
-	models.Save(event)
+	err := models.Save(event)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error in create event": err.Error()})
+		return
+	}
 	context.JSON(http.StatusCreated, gin.H{"event created": event}) // event)
 }
