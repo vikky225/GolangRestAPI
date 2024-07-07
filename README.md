@@ -34,6 +34,8 @@ This package contains the REST API implementation for the Golang project.
 2. Register the routes using `routes.RegisteredRoutes(server)` in the [main](cci:1:///Users/vikasmalviya/REST_API/main.go:10:0-19:1) package.
 
 ## Running the Project
+
+Locally Run
 1. Clone the repository:
    ```bash
    git clone git@github.com:vikky225/GolangRestAPI.git
@@ -50,7 +52,28 @@ cd REST_API
 4. Run the application
 ```go run .```
 
+## Dockerized Environment to Run
+To run your application in a Dockerized environment based on the provided Dockerfile, follow these instructions:
 
+- Ensure Docker is installed on your system.
+
+- Create a directory containing your Go application code and the Dockerfile.
+
+- Save the provided Dockerfile in the same directory as your application code.
+
+- Open a terminal and navigate to the directory containing your code and Dockerfile.
+
+- Build the Docker image using the following command:
+
+``` docker build -t my-go-app .```
+This command will build the Docker image based on the instructions in the Dockerfile. Replace my-go-app with a suitable name for your Docker image.
+
+- Run a Docker container based on the image you just built:
+
+``` docker run -p 8080:8080 my-go-app```
+- This command will start a container running your Go application, which will be accessible at http://localhost:8080.
+
+These instructions assume you have your Go application code ready in the same directory as the Dockerfile. Let me know if you need further clarification or assistance!
 
 ## Dependencies
 
