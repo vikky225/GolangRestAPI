@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"example.com/restapi/models"
+	"example.com/restapi/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,5 +35,12 @@ func login(context *gin.Context) {
 		context.JSON(http.StatusUnauthorized, gin.H{"error in login": err.Error()})
 		return
 	}
-	context.JSON(http.StatusOK, gin.H{"user logged in": "Successfully"})
+
+	token, err := utils.GenerateToken(user.Email, user.ID)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"not autheticate user": err.Error()})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"msg": "usr autheticated", "token": token})
 }
