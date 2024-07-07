@@ -58,10 +58,16 @@ func updateEvent(context *gin.Context) {
 		return
 	}
 
-	_, err = models.GetEventByID(eventId)
+	userId := context.GetInt64("userId")
+	event, err := models.GetEventByID(eventId)
 	if err != nil {
 
 		context.JSON(http.StatusInternalServerError, gin.H{"error in get event by id": err.Error()})
+		return
+	}
+
+	if event.UserID != userId {
+		context.JSON(http.StatusUnauthorized, gin.H{"Not Authorized to update event only user who created can be do so": "unauthorized"})
 		return
 	}
 
@@ -88,9 +94,14 @@ func deleteEvent(context *gin.Context) {
 		return
 	}
 
+	userId := context.GetInt64("userId")
 	event, err := models.GetEventByID(id)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error in get event by id": err.Error()})
+		return
+	}
+	if event.UserID != userId {
+		context.JSON(http.StatusUnauthorized, gin.H{"Not Authorized to delete event only user who created can be do so": "unauthorized"})
 		return
 	}
 
