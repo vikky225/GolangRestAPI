@@ -22,6 +22,8 @@ COPY . .
 # Build the Go app
 RUN go build -o main .
 
+RUN chmod +x main
+
 # Start a new stage from scratch
 FROM debian:stable-slim
 

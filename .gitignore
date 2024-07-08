@@ -3,6 +3,7 @@
 .vscode
 bin
 .DS_Store
+.env
 
 # Logs
 *.log
