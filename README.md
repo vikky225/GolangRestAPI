@@ -75,6 +75,11 @@ This command will build the Docker image based on the instructions in the Docker
 
 These instructions assume you have your Go application code ready in the same directory as the Dockerfile. Let me know if you need further clarification or assistance!
 
+## Git hub action for building and pushing image to docker hub than deploying it to EC2 instance
+{{EC2 instacnce IP address}}:8080/events should work and give you results
+or you can directly run as we have pushed image to docker hub so you have to run in your local 
+docker run -p 8080:8080 vikky225/go-app:latest and than run localhost:8080/events and you can play around with endpoints to create and get events etc
+
 ## Dependencies
 
 - `github.com/gin-gonic/gin`: Gin web framework
