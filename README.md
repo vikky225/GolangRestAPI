@@ -8,7 +8,7 @@
 
 # REST_API Package.
 
-This package contains the REST API implementation for the Golang project.
+This package contains the REST API implementation for the Golang project. We have dockerised application and pushed the image to Docker hub via github action and deployed to self hosted EC2 instance as well (github action ci/cd)
 
 ## Endpoints
 
