@@ -80,6 +80,10 @@ These instructions assume you have your Go application code ready in the same di
 or you can directly run as we have pushed image to docker hub so you have to run in your local 
 docker run -p 8080:8080 vikky225/go-app:latest and than run localhost:8080/events and you can play around with endpoints to create and get events etc
 
+
+you can access site as below 
+http://ec2-3-26-144-138.ap-southeast-2.compute.amazonaws.com:8080/events 
+
 ## Dependencies
 
 - `github.com/gin-gonic/gin`: Gin web framework
